@@ -3,6 +3,9 @@ from pysc2.lib import features
 
 
 class Env:
+    """
+    Environment that the agent can operate in
+    """
     def __init__(self, screen_size, minimap_size, game_steps_per_agent_step,
                  visualize=False):
         # set attributes

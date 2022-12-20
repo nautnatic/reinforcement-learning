@@ -1,4 +1,8 @@
 class History:
+    """
+    Store data in a history with a maximum size after which the oldest entry is
+    discarded
+    """
     def __init__(self, size=1):
         """
         :param size: How many entries should be kept in this history

@@ -7,6 +7,9 @@ import tensorflow as tf
 
 
 class Network(ABC):
+    """
+    Wrapper for a neural network model
+    """
     def __init__(self, model):
         self.model = model
 

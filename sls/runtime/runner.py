@@ -9,6 +9,9 @@ tf.compat.v1.disable_eager_execution()
 
 
 class Runner:
+    """
+    Resposible for running/training the agent in a given environment
+    """
     def __init__(self, agent_class, env, nb_episodes, output_container_dir):
         """
         :param agent_class: Agent navigation in the environment

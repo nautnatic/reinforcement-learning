@@ -13,6 +13,9 @@ from sls.util.networks import Network
 
 
 class DQNAgent(AbstractAgent):
+    """
+    Agent using a Deep Qlearning Network to learn the optimal strategy
+    """
     def __init__(self, runner, pretrained_model=None):
         super(DQNAgent, self).__init__(screen_size=runner.env.screen_size)
 

@@ -5,6 +5,9 @@ from pysc2.lib import actions, features
 
 
 class AbstractAgent:
+    """
+    Abstract agent class that all agents inherit from
+    """
     _DIRECTIONS = {'N': [0, -1],
                    'NE': [1, -1],
                    'E': [1, 0],

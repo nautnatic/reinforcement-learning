@@ -7,6 +7,9 @@ from tensorflow.python.summary.writer.writer import FileWriter
 
 
 class Evaluator:
+    """
+    Writes output data for a train/run execution
+    """
     def __init__(self, runner, output_container_dir):
         self.runner = runner
         self.output_container_dir = output_container_dir

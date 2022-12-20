@@ -5,7 +5,6 @@ class ReplayMemory:
     """
     Save transitions to do a batch update of the qvalues later
     """
-
     def __init__(self, min_size, max_size, minibatch_size):
         self.min_size = min_size
         self.max_size = max_size
