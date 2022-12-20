@@ -5,7 +5,7 @@ name = "pypi"
 
 [packages]
 pysc2 = "==4.0.0"
-tensorflow = ">=2.0.0"
+tensorflow = "*"
 numpy = "*"
 pandas = "*"
 

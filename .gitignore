@@ -1,0 +1,5 @@
+out/
+
+# ignore all env files because they contain credentials and information about the
+# local environment
+.env*
