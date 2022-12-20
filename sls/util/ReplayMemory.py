@@ -36,3 +36,14 @@ class ReplayMemory:
         :return:
         """
         return True if self.memory.shape[0] >= self.min_size else False
+
+
+class MemoryEntry:
+    """
+    All attributes necessary in an entry of the replay memory
+    """
+    def __init__(self, previous_state, previous_action, reward, current_state):
+        self.previous_state = previous_state
+        self.previous_action = previous_action
+        self.reward = reward
+        self.current_state = current_state

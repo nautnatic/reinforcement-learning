@@ -8,7 +8,7 @@ from sls.agents import AbstractAgent
 from sls.util.EpsilonGreedyExploration import EpsilonGreedyExplorationStrategy
 
 from sls.util.History import History
-from sls.util.ReplayMemory import ReplayMemory
+from sls.util.ReplayMemory import ReplayMemory, MemoryEntry
 from sls.util.networks import Network
 
 
@@ -161,17 +161,6 @@ class DQNAgent(AbstractAgent):
                     (sample.reward + self.gamma * np.max(y_target[sample_nb]))
             y_pred[sample_nb, index_executed_action] = y_executed_action
         return y_pred
-
-
-class MemoryEntry:
-    """
-    All attributes necessary in an entry of the replay memory
-    """
-    def __init__(self, previous_state, previous_action, reward, current_state):
-        self.previous_state = previous_state
-        self.previous_action = previous_action
-        self.reward = reward
-        self.current_state = current_state
 
 
 def build_model(env, learning_rate):
