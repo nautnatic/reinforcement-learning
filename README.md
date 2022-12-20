@@ -31,14 +31,13 @@ All information related to the environment is documented
 [here](docs/Environment.md).
 
 ## Architecture
-General design decisions are documented [here](docs/Architecture.md)
+General design decisions are documented [here](docs/Architecture.md).
 
 ## Agents
 The behaviour of the marine is encapsulated in the *Agent* class. So 
 additional to a *RandomAgent* (with random behaviour) and a *BasicAgent* 
 (with optimal behaviour) all learning algorithms have a separate *Agent* class.
 
-The different agents are documented [here](docs/Agents.md).
+The different agents are documented [here](docs/Agents.md). 
 
-* [Learning algorithms](docs/Agents.md)
-* [Exploration Strategies](docs/ExplorationStrategies.md)
+The different exploration strategies are documented [here](docs/ExplorationStrategies.md).
