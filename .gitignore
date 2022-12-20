@@ -1,4 +1,8 @@
+# directory to save graphs and trained model weights for each train/run execution
 out/
+
+# Python
+__pycache__
 
 # ignore all env files because they contain credentials and information about the
 # local environment
