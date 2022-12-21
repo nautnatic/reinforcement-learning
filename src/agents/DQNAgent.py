@@ -4,12 +4,12 @@ from keras.losses import MeanSquaredError
 from keras.optimizers import Adam
 from keras.layers import Dense, Rescaling
 
-from sls.agents import AbstractAgent
-from sls.util.EpsilonGreedyExploration import EpsilonGreedyExplorationStrategy
+from src.agents import AbstractAgent
+from src.util.EpsilonGreedyExploration import EpsilonGreedyExplorationStrategy
 
-from sls.util.History import History, AgentStepHistoryItem
-from sls.util.ReplayMemory import ReplayMemory, MemoryEntry
-from sls.util.networks import Network
+from src.util.History import History, AgentStepHistoryItem
+from src.util.ReplayMemory import ReplayMemory, MemoryEntry
+from src.util.networks import Network
 
 
 class DQNAgent(AbstractAgent):

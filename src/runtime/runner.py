@@ -1,9 +1,9 @@
 import os
 import tensorflow as tf
 
-from sls.util.History import History
-from sls.util.evaluation import Evaluator
-from sls.util import networks
+from src.util.History import History
+from src.util.evaluation import Evaluator
+from src.util import networks
 
 tf.compat.v1.disable_eager_execution()
 
