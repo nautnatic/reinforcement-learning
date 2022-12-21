@@ -1,4 +1,5 @@
 import datetime
+import os.path
 
 from pathlib import Path
 
@@ -25,7 +26,7 @@ class Evaluator:
         train_mode = ('train' if self.runner.train_mode else 'run')
         agent_name = type(self.runner.agent).__name__
         self.output_filename = f"{start_time}_{train_mode}_{agent_name}"
-        self.output_dir = Path.joinpath(self.runner.output_container_dir, self.output_filename)
+        self.output_dir = os.path.join(self.runner.output_container_dir, self.output_filename)
         self.writer = tf.compat.v1.summary.FileWriter(
             self.output_dir,
             tf.compat.v1.get_default_graph()

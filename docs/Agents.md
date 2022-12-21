@@ -44,7 +44,7 @@ Q(s,a) = Q(s,a) + alpha * ( r + gamma * max_action( Q(s',a) ) - Q(s,a) )
  
 Otherwise: Q(s,a) = Q(s,a) + alpha * ( r - Q(s,a) )
 
-![Picture](../img/qlearning.jpeg)
+![Picture](img/qlearning.jpeg)
 
 ## SARSAAgent
 The SARSAAgent works the same as the QLearningAgent, but uses a more 
@@ -63,7 +63,7 @@ best strategy had been to walk along the edge, in contrast to the QLearningAgent
 the SARSA will probably not find the optimal solution, but also will fall down 
 the edge far less often.
 
-![Picture](../img/sarsa.jpeg)
+![Picture](img/sarsa.jpeg)
 
 ## DeepQLearningAgent (DQNAgent)
 Standard *Qlearning* with a Qtable has limit when then state space and/or action space increase in size, because the Qtable gets very big and takes a lot of time to learn.
@@ -91,7 +91,7 @@ This functionality removes correlation between the single observations and makes
 
 The *Experience Replay* gets implemented by using not one, but **two Neural Networks** - the **Q Network**, which gets updated every step and now additionally the **Target Network**, which is used during the training for calculating the target qvalue for the loss function and only gets updated slowly and periodically (e.g. every n steps).
 
-![Picture](../img/deep_qlearning.jpeg)
+![Picture](img/deep_qlearning.jpeg)
 
 #### Error Clipping
 In **Error Clipping** upper and lower bounds are defined for the errors (e.g. the range [-1,1]). This leads to a more stable learning behaviour.
@@ -108,4 +108,4 @@ TODO
 ## Monte Carlo Policy Gradient
 TODO
 
-![Picture](../img/monte_carlo_gradient_control.jpeg)
+![Picture](img/monte_carlo_gradient_control.jpeg)

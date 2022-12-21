@@ -1,15 +1,20 @@
+import numpy as np
+
+
 class EpsilonGreedyExplorationStrategy:
-    def __init__(self, config, epsilon_start, epsilon_end,
+    def __init__(self, runner, agent, epsilon_start, epsilon_end,
                  episodes_until_min_epsilon):
         """
-        :param config: Reference to the Agent that uses the exploration strategy
+        :param runner: Reference to the runner that uses the exploration strategy
+        :param agent: Reference to the agent that uses the exploration strategy
         :param epsilon_start: Exploration rate at the beginning. In range [0,1]
         :param epsilon_end: Exploration from episodes_until_min_epsilon until
         the end. In range [0,1]
         :param episodes_until_min_epsilon: Number of episodes until the minimum
         exploration rate is reached.
         """
-        self.config = config
+        self.runner = runner
+        self.agent = agent
         self.epsilon_start = epsilon_start
         self.epsilon_end = epsilon_end
         self.epsilon_current = epsilon_start
@@ -21,15 +26,14 @@ class EpsilonGreedyExplorationStrategy:
         :param current_state: State to take the action from
         :return: Next action to execute.
         """
-        if self.config.train_mode and (
-                np.random.uniform(0, 1) < self.epsilon_current):
+        if self.runner.train_mode and (np.random.uniform(0, 1) < self.epsilon_current):
             # choose random action
-            return np.random.choice(list(self.config.DIRECTIONS.keys()))
+            return np.random.choice(list(self.agent.DIRECTIONS.keys()))
 
         # choose action with the highest reward
         input = np.expand_dims(list(current_state), axis=0)
-        return list(self.config.DIRECTIONS.keys())[
-            np.argmax(self.config.model.predict(input))]
+        return list(self.runner.DIRECTIONS.keys())[
+            np.argmax(self.runner.model.predict(input))]
 
     def update_exploration_rate(self):
         """
@@ -38,5 +42,4 @@ class EpsilonGreedyExplorationStrategy:
         :return:
         """
         if self.epsilon_current > self.epsilon_end:
-            self.epsilon_current -= (
-                                            self.epsilon_start - self.epsilon_end) / self.episodes_until_min_epsilon
+            self.epsilon_current -= (self.epsilon_start - self.epsilon_end) / self.episodes_until_min_epsilon

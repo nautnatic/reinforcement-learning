@@ -8,6 +8,7 @@ pysc2 = "==4.0.0"
 tensorflow = "*"
 numpy = "*"
 pandas = "*"
+tensorflow-gpu = "*"
 
 [dev-packages]
 

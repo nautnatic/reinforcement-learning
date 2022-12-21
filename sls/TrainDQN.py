@@ -14,7 +14,7 @@ def main(unused_argv):
         agent_class=DQNAgent,
         env=env,
         nb_episodes=1000,
-        output_container_dir='./out/...'
+        output_container_dir='./out'
     )
     runner.train()
 

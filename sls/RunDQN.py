@@ -14,7 +14,7 @@ def main(unused_argv):
         agent_class=DQNAgent,
         env=env,
         nb_episodes=100,
-        output_container_dir='./out/...'
+        output_container_dir='./out'
     )
     runner.run(pretrained_model_path='./out/FINISHED_train_DQNAgent/model.hdf5')
 

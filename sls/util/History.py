@@ -41,3 +41,14 @@ class History:
         :return: True if history empty, else false
         """
         return True if len(self.entries) == 0 else False
+
+
+class AgentStepHistoryItem:
+    """
+    Contains information about a agent simulation step that is saved in the history
+    """
+    def __init__(self, state, reward, next_action):
+        self.state = state
+        self.reward = reward
+        self.next_action = next_action
+

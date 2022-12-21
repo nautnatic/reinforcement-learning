@@ -25,6 +25,7 @@ class Runner:
         if output_container_dir is None or not os.path.isdir(output_container_dir):
             raise Exception(f"Invalid value for output directory {output_container_dir}")
 
+        self.output_container_dir = output_container_dir
         self.agent_class = agent_class
         self.env = env
         self.nb_episodes = nb_episodes

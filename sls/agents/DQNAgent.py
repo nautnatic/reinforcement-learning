@@ -7,7 +7,7 @@ from keras.layers import Dense, Rescaling
 from sls.agents import AbstractAgent
 from sls.util.EpsilonGreedyExploration import EpsilonGreedyExplorationStrategy
 
-from sls.util.History import History
+from sls.util.History import History, AgentStepHistoryItem
 from sls.util.ReplayMemory import ReplayMemory, MemoryEntry
 from sls.util.networks import Network
 
@@ -16,6 +16,7 @@ class DQNAgent(AbstractAgent):
     """
     Agent using a Deep Qlearning Network to learn the optimal strategy
     """
+
     def __init__(self, runner, pretrained_model=None):
         super(DQNAgent, self).__init__(screen_size=runner.env.screen_size)
 
@@ -30,7 +31,8 @@ class DQNAgent(AbstractAgent):
         # to the previous state. (in range [0,1])
         self.gamma = 0.9
         self.exploration_strategy = EpsilonGreedyExplorationStrategy(
-            config=self,
+            runner=runner,
+            agent=self,
             epsilon_start=1,
             epsilon_end=0.05,
             episodes_until_min_epsilon=500)
@@ -103,7 +105,7 @@ class DQNAgent(AbstractAgent):
         if not self.agent_step_history.is_empty():
             new_memory = MemoryEntry(
                 previous_state=self.agent_step_history.entries[-1].state,
-                previous_action=self.agent_step_history.entries[-1].action,
+                previous_action=self.agent_step_history.entries[-1].next_action,
                 reward=self.agent_step_history.entries[-1].reward,
                 current_state=current_state)
             self.replay_memory.add(new_memory)
@@ -118,7 +120,13 @@ class DQNAgent(AbstractAgent):
         if observation.last() or observation.reward == 1:
             self.agent_step_history.reset()
         else:
-            self.agent_step_history.add((next_action, current_state))
+            self.agent_step_history.add(
+                AgentStepHistoryItem(
+                    state=current_state,
+                    reward=observation.reward,
+                    next_action=next_action
+                )
+            )
 
         # update exploration rate
         if observation.last():
@@ -152,7 +160,7 @@ class DQNAgent(AbstractAgent):
         # q_target = r + gamma * max_a(q)
         for sample_nb, sample in enumerate(batch):
             beacon_reached = True if sample.reward == 1.0 else False
-            index_executed_action = list(self._DIRECTIONS.keys()).index(
+            index_executed_action = list(self.DIRECTIONS.keys()).index(
                 sample[1])
             if beacon_reached:
                 y_executed_action = sample.reward
@@ -186,5 +194,6 @@ def build_model(env, learning_rate):
     model.add(
         Dense(8, activation=activations.linear,
               kernel_initializer='random_normal'))
-    return model.compile(optimizer=Adam(learning_rate=learning_rate),
-                         loss=MeanSquaredError())
+    model.compile(optimizer=Adam(learning_rate=learning_rate),
+                  loss=MeanSquaredError())
+    return model

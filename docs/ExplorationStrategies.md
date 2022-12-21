@@ -24,6 +24,6 @@ The **temperature parameter tau** in the Boltzmann distribution controls the amo
 The temperature can either be set manually or **adjusted automatically over time**, depending on the needs of the learning system.
 
 The following equation describes the bolzmann distribution:
-![BoltzmannExploration](../img/boltzmann_exploration.png)
+![BoltzmannExploration](img/boltzmann_exploration.png)
 
 More information can be found [here](https://medium.com/emergent-future/simple-reinforcement-learning-with-tensorflow-part-7-action-selection-strategies-for-exploration-d3a97b7cceaf).

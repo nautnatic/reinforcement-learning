@@ -5,11 +5,18 @@ class ReplayMemory:
     """
     Save transitions to do a batch update of the qvalues later
     """
+
     def __init__(self, min_size, max_size, minibatch_size):
         self.min_size = min_size
         self.max_size = max_size
         self.minibatch_size = minibatch_size
         self.memory = np.empty(shape=(0, 5))
+        self.column_names = [
+            'previous_state',
+            'previous_action',
+            'reward',
+            'current_state',
+        ]
 
     def get_random_minibatch(self):
         """
@@ -26,6 +33,13 @@ class ReplayMemory:
         Adds a new memory to the replay memory
         :param new_memory: Memory to add
         """
+        new_memory = np.array([(
+                list(new_memory.previous_state),
+                new_memory.previous_action,
+                new_memory.reward,
+                list(new_memory.current_state)
+            )]
+        )
         self.memory = np.vstack((self.memory, new_memory))
         if self.memory.shape[0] > self.max_size:
             self.memory = self.memory[1:, :]
@@ -42,6 +56,7 @@ class MemoryEntry:
     """
     All attributes necessary in an entry of the replay memory
     """
+
     def __init__(self, previous_state, previous_action, reward, current_state):
         self.previous_state = previous_state
         self.previous_action = previous_action

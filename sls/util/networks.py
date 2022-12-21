@@ -4,6 +4,7 @@ import numpy as np
 from abc import ABC
 
 import tensorflow as tf
+from keras.models import clone_model
 
 
 class Network(ABC):
@@ -37,7 +38,7 @@ class Network(ABC):
         Returns a clone of this network
         :return: Clone of the network
         """
-        new_model = self.model.clone_model(self.model)
+        new_model = clone_model(self.model)
         return Network(new_model)
 
 

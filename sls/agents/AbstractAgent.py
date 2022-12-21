@@ -8,7 +8,7 @@ class AbstractAgent:
     """
     Abstract agent class that all agents inherit from
     """
-    _DIRECTIONS = {'N': [0, -1],
+    DIRECTIONS = {'N': [0, -1],
                    'NE': [1, -1],
                    'E': [1, 0],
                    'SE': [1, 1],
@@ -73,10 +73,10 @@ class AbstractAgent:
                 dest[1] = self.screen_size - 1
             return dest
 
-        if d in self._DIRECTIONS.keys():
+        if d in self.DIRECTIONS.keys():
             next_pos = _xy_offset(marine_center,
-                                  self.screen_size * self._DIRECTIONS[d][0],
-                                  self.screen_size * self._DIRECTIONS[d][1])
+                                  self.screen_size * self.DIRECTIONS[d][0],
+                                  self.screen_size * self.DIRECTIONS[d][1])
             return self._MOVE_SCREEN("now", next_pos)
         else:
             return self._NO_OP
