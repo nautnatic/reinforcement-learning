@@ -80,21 +80,21 @@ class Runner:
 
             # finish episode (write summary and save model data)
             self.episode_history.add(self.score)
-            self.write_summary()
+            self._write_summary()
             if self.train_mode and episode % 10 == 0:
-                self.save_model()
+                self._save_model()
                 try:
                     self.agent.update_target_model()
                 except AttributeError:
                     ...
 
-    def write_summary(self):
+    def _write_summary(self):
         """
         Writes all summaries
         """
-        self.agent.write_summary()
+        self.agent._write_summary()
 
-    def save_model(self):
+    def _save_model(self):
         """
         Saves all models
         """
